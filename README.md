@@ -1,4 +1,4 @@
-#Run the app
+# Run the app
 
 Just use in terminal 
 nodemon
