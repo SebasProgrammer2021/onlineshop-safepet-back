@@ -1,5 +1,12 @@
 #Run the app
 
+Just use in terminal 
+nodemon
+
+if not installed, install.
+
+Start mysql
+
 1. start mysql service on linux
 sudo service mysql start
 
