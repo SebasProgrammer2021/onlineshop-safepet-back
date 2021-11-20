@@ -8,5 +8,10 @@ router.get("/", (req, res) => {
 });
 
 router.post("/add", customerController.addCustomerWithBenefits);
+// router.post("/update", customerController.eliminar);
+// router.post("/delete", customerController.addCustomerWithBenefits);
+
+
+
 
 module.exports = router;
