@@ -4,9 +4,6 @@ const express = require("express");
 const customerControllers = module.exports;
 const consultas = require("../routes/bd");
 
-const customer = require("../routes/customers/customer");
-const benefit = require("../routes/benefits/benefits");
-
 customerControllers.addCustomerWithBenefits = async (req, res) => {
   const { cedula, nombre, apellido, direccion, telefono, beneficios } =
     req.body;

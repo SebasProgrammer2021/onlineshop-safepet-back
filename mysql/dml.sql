@@ -1,32 +1,32 @@
 insert into beneficio (idBeneficio, nombre, costo)
 values (
     1,
-    'Acetaminophen, Dextromethorphan HBr, Guaifenesin, Phenylephrine HCl',
-    103
+    'Consultas generales',
+    150000
   );
 insert into beneficio (idBeneficio, nombre, costo)
-values (2, 'Etodolac', 93);
+values (2, 'Spa uñas', 50000);
 insert into beneficio (idBeneficio, nombre, costo)
-values (3, 'Calcium carbonate', 173);
+values (3, 'Spa corte pelo', 15000);
 insert into beneficio (idBeneficio, nombre, costo)
-values (4, 'guaifenesin', 186);
+values (4, 'Fiesta de cumpleaños', 45000);
 insert into beneficio (idBeneficio, nombre, costo)
 values (
     5,
-    'Dextromethorphan Hydrobromide, Guaifenesin',
-    72
+    'Transporte en caso de emergencia',
+    80000
   );
 insert into beneficio (idBeneficio, nombre, costo)
-values (6, 'Simvastatin', 55);
+values (6, 'Seguro todo riesgo', 300000);
 insert into beneficio (idBeneficio, nombre, costo)
-values (7, 'Famotidine', 52);
+values (7, 'Servicio funebre', 73000);
 insert into beneficio (idBeneficio, nombre, costo)
-values (8, 'Losartan Potassium', 179);
+values (8, 'Medicamentos', 30000);
 insert into beneficio (idBeneficio, nombre, costo)
-values (9, 'Levofloxacin', 108);
+values (9, 'Consultas especializadas', 42000);
 insert into beneficio (idBeneficio, nombre, costo)
 values (
     10,
-    'AMMONIA, LIDOCAINE HYDROCHLORIDE, TRIAMCINOLONE ACETONIDE, POVIDONE-IODINE',
-    174
+    'Atención preferencial',
+    20000
   );

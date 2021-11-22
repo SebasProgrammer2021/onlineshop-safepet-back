@@ -1,18 +1,37 @@
-const express = require("express");
-const benefit = express.Router();
 const mysqlConnection = require("../../mysql/config");
 
 // all customers
-benefit.get("/getAll", (req, res) => {
-  const sql = "SELECT * FROM beneficio";
-  mysqlConnection.query(sql, (error, results) => {
-    if (error) throw error;
-    if (results.length > 0) {
-      res.json(results);
-    } else {
-      res.send("no results");
-    }
-  });
-});
+function getAllBenefits() {
+  return new Promise((resolve, reject) => {
+    let sqlSentence = `SELECT * FROM beneficio`;
+    let query = mysqlConnection.format(sqlSentence);
 
-module.exports = benefit;
+    mysqlConnection.query(query, (error, result) => {
+      if (error) reject(error);
+      resolve(result);
+    });
+  });
+}
+
+function deleteAllBenefits() {
+  return new Promise((resolve, reject) => {
+    let sqlSentence1 = `DELETE FROM cliente_beneficio`;
+    let query1 = mysqlConnection.format(sqlSentence1);
+    mysqlConnection.query(query1, (error, result) => {
+      if (error) reject(error);
+    });
+
+    let sqlSentence = `DELETE FROM beneficio`;
+    let query = mysqlConnection.format(sqlSentence);
+    mysqlConnection.query(query, (error, result) => {
+      if (error) reject(error);
+      resolve(result);
+    });
+  });
+}
+
+module.exports = {
+  deleteAllBenefits,
+  getAllBenefits,
+};
+

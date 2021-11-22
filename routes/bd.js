@@ -1,4 +1,3 @@
-const express = require("express");
 const mysqlConnection = require("../mysql/config");
 
 function registerCustomer(data) {
@@ -8,20 +7,6 @@ function registerCustomer(data) {
 
     mysqlConnection.query(query, (error, result) => {
       if (error) reject(error);
-      resolve(result);
-    });
-  });
-}
-
-function getBenefits(data) {
-  return new Promise((resolve, reject) => {
-    let insert = `SELECT * FROM beneficio`;
-    let query = mysqlConnection.format(insert, data);
-
-    mysqlConnection.query(query, (error, result) => {
-      if (error) reject(error);
-      mysqlConnection.end();
-
       resolve(result);
     });
   });
@@ -41,6 +26,5 @@ function relationCustomerBenefits(data) {
 
 module.exports = {
   registerCustomer,
-  getBenefits,
   relationCustomerBenefits,
 };
