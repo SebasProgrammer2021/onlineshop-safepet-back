@@ -24,7 +24,20 @@ function relationCustomerBenefits(data) {
   });
 }
 
+function getAllCustomers() {
+  return new Promise((resolve, reject) => {
+    let sqlSentence = `SELECT * FROM cliente`;
+    let query = mysqlConnection.format(sqlSentence);
+
+    mysqlConnection.query(query, (error, result) => {
+      if (error) reject(error);
+      resolve(result);
+    });
+  });
+}
+
 module.exports = {
+  getAllCustomers,
   registerCustomer,
   relationCustomerBenefits,
 };

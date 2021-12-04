@@ -9,10 +9,11 @@ router.get("/", (req, res) => {
   res.send("Welcome to SAFEPET API");
 });
 router.post("/add", customerController.addCustomerWithBenefits);
+router.get("/getAll", customerController.getAll);
 
-// benefits
-router.get("/getAll", benefitController.getAll);
-router.delete("/deleteAll", benefitController.deleteAll);
+// // benefits
+// router.get("/getAll", benefitController.getAll);
+// router.delete("/deleteAll", benefitController.deleteAll);
 
 // app.get('/download', function (req, res) {
 //   var file = '../static/contratoTrato_ex.doc';
