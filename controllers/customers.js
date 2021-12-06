@@ -7,8 +7,27 @@ const planController = require("./plan");
 const planQuerys = require("../routes/plan/plan");
 
 customerControllers.addCustomerWithBenefits = async (req, res) => {
-  const { cedula, nombre, apellido, direccion, telefono, valor, beneficios } =
-    req.body;
+  const {
+    cedula,
+    nombre,
+    apellido,
+    direccion,
+    telefono,
+    valor,
+    beneficios,
+    pets,
+  } = req.body;
+
+  console.log(
+    // cedula,
+    // nombre,
+    // apellido,
+    // direccion,
+    // telefono,
+    // valor,
+    // beneficios,
+    pets
+  );
 
   try {
     const plan = {
@@ -36,6 +55,17 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
         beneficio_idBeneficio: beneficios[benefitId],
       };
       let b = await consultas.relationCustomerBenefits(relation);
+    }
+
+    for (const pet in pets) {
+      let petData = {
+        nombre: pet.nombre,
+        edad: pet.edad,
+        raza: pet.raza,
+        cedula,
+        planId,
+      };
+      let addedPet = await consultas.registerPet(petData);
     }
 
     return res.status(200).json({
