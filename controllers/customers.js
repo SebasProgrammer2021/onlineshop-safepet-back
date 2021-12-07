@@ -5,6 +5,7 @@ const customerControllers = module.exports;
 const consultas = require("../routes/bd");
 const planController = require("./plan");
 const planQuerys = require("../routes/plan/plan");
+const petQuerys = require("../mysql/queries/pet");
 
 customerControllers.addCustomerWithBenefits = async (req, res) => {
   const {
@@ -18,16 +19,16 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
     pets,
   } = req.body;
 
-  console.log(
-    // cedula,
-    // nombre,
-    // apellido,
-    // direccion,
-    // telefono,
-    // valor,
-    // beneficios,
-    pets
-  );
+  // console.log(
+  //   // cedula,
+  //   // nombre,
+  //   // apellido,
+  //   // direccion,
+  //   // telefono,
+  //   // valor,
+  //   // beneficios,
+  //   pets
+  // );
 
   try {
     const plan = {
@@ -57,16 +58,18 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
       let b = await consultas.relationCustomerBenefits(relation);
     }
 
-    for (const pet in pets) {
-      let petData = {
-        nombre: pet.nombre,
-        edad: pet.edad,
-        raza: pet.raza,
-        cedula,
-        planId,
+    pets.map(async (e, index) => {
+      let { nombre, edad, raza } = e;
+      let pet = {
+        nombre,
+        edad,
+        raza,
+        cliente_idCliente: cedula,
+        plan_idPlan: planId,
       };
-      let addedPet = await consultas.registerPet(petData);
-    }
+      // console.log(e, index, nombre);
+      let respetreg = await petQuerys.addPet(pet);
+    });
 
     return res.status(200).json({
       status: "Successful registration",
@@ -84,6 +87,25 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
 customerControllers.getAll = async (req, res) => {
   try {
     let customersList = await consultas.getAll();
+
+    return res.status(200).json({
+      data: customersList,
+      status: 200,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      status: "Erron on save",
+      error,
+      reg: true,
+    });
+  }
+};
+
+customerControllers.getCopago = async (req, res) => {
+  let { cedula } = req.body;
+
+  try {
+    let customersList = await consultas.getCopago(cedula);
 
     return res.status(200).json({
       data: customersList,

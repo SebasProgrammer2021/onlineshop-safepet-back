@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use("/benefit", require("./routes/benefits/routes"));
 app.use("/customer", require("./routes/routes"));
 app.use("/plan", require("./routes/plan/routes"));
-
+app.use("/pet", require("./routes/pets/routes"));
 
 mysqlConnection.connect((error) => {
   if (error) {

@@ -10,6 +10,7 @@ router.get("/", (req, res) => {
 });
 router.post("/add", customerController.addCustomerWithBenefits);
 router.get("/getAll", customerController.getAll);
+router.post("/consultCopago",customerController.getCopago)
 
 // // benefits
 // router.get("/getAll", benefitController.getAll);

@@ -36,8 +36,23 @@ function getAll() {
   });
 }
 
+function getCopago(cedula) {
+  return new Promise((resolve, reject) => {
+    let sqlSentence = `SELECT copago FROM Cliente inner join Plan 
+    on Cliente.plan_idPlan = Plan.idPlan
+    where Cliente.cedula = ${cedula}`;
+    let query = mysqlConnection.format(sqlSentence);
+
+    mysqlConnection.query(query, (error, result) => {
+      if (error) reject(error);
+      resolve(result);
+    });
+  });
+}
+
 module.exports = {
   getAll,
   registerCustomer,
   relationCustomerBenefits,
+  getCopago,
 };
