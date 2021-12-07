@@ -1,10 +1,11 @@
+const express = require("express");
 const mysqlConnection = require("../../mysql/config");
 
-// all customers
-function getAllBenefits() {
+function addPet(data) {
+
   return new Promise((resolve, reject) => {
-    let sqlSentence = `SELECT * FROM Beneficio`;
-    let query = mysqlConnection.format(sqlSentence);
+    const sqlSentence = "INSERT INTO Beneficiario SET ?";
+    let query = mysqlConnection.format(sqlSentence, data);
 
     mysqlConnection.query(query, (error, result) => {
       if (error) reject(error);
@@ -13,16 +14,11 @@ function getAllBenefits() {
   });
 }
 
-function deleteAllBenefits() {
+function getAll() {
   return new Promise((resolve, reject) => {
-    let sqlSentence1 = `DELETE FROM cliente_beneficio`;
-    let query1 = mysqlConnection.format(sqlSentence1);
-    mysqlConnection.query(query1, (error, result) => {
-      if (error) reject(error);
-    });
-
-    let sqlSentence = `DELETE FROM beneficio`;
+    const sqlSentence = "SELECT * FROM Beneficiario";
     let query = mysqlConnection.format(sqlSentence);
+
     mysqlConnection.query(query, (error, result) => {
       if (error) reject(error);
       resolve(result);
@@ -31,7 +27,6 @@ function deleteAllBenefits() {
 }
 
 module.exports = {
-  deleteAllBenefits,
-  getAllBenefits,
+  addPet,
+  getAll,
 };
-

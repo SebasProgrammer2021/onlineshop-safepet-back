@@ -45,6 +45,8 @@ planController.getAll = async (req, res) => {
   }
 };
 
+
+
 planController.calculateCopago = (planValue) => {
   let copago = false;
 
