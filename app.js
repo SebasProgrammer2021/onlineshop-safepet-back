@@ -3,9 +3,9 @@ const mysql = require("mysql2");
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3050;
 const mysqlConnection = require("./mysql/config");
-const cors = require("cors");
+//const cors = require("cors");
 const app = express();
-app.use(cors());
+//app.use(cors());
 app.use(bodyParser.json());
 
 //routes
