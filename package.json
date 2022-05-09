@@ -4,7 +4,8 @@
   "description": "SAFEPET APP,",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:cov": "jest --coverage --watchAll",
     "start": "sudo service mysql start && nodemon app.js"
   },
   "keywords": [],
@@ -12,6 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "express": "^4.17.1",
+    "jest": "^28.1.0",
     "nodemon": "^2.0.13"
   },
   "dependencies": {
