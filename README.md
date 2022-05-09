@@ -31,3 +31,16 @@ solución
 -- en "password" coloca su contraseña de mysql
 
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+
+
+## Run all tests
+
+it runs all tests with coverage report
+
+command: npm run test:cov
+
+## Run 1 test file
+
+command: npm test relative file path
+
+example: npm test routes/sum.test.js
