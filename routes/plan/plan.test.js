@@ -8,6 +8,7 @@ test('Me retorna la tabla plan', async () => {
   });
 
 test('agrega objeto a la tabla plan', async () => {
+  //objeto de prueba
   var myobject ={
     id: 12,
     nombre: 'Raul'
