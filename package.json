@@ -6,17 +6,17 @@
   "scripts": {
     "test": "jest",
     "test:cov": "jest --coverage --watchAll",
-    "start": "nodemon app.js"
+    "start": "node ."
   },
   "keywords": [],
   "author": "Juan Sebastián Tobon, Sebastián Londoño Valencia,",
   "license": "ISC",
   "devDependencies": {
-    "express": "^4.17.1",
     "jest": "^28.1.0",
     "nodemon": "^2.0.13"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "mysql-server": "^1.0.5",
