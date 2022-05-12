@@ -26,7 +26,7 @@ function relationCustomerBenefits(data) {
 
 function getAll() {
   return new Promise((resolve, reject) => {
-    let sqlSentence = `SELECT * FROM Cliente`;
+    let sqlSentence = `SELECT * FROM bz19wlktes4tn01bh54y.Cliente`;
     let query = mysqlConnection.format(sqlSentence);
 
     mysqlConnection.query(query, (error, result) => {
