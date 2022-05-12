@@ -2,7 +2,7 @@ const mysqlConnection = require("../mysql/config");
 
 function registerCustomer(data) {
   return new Promise((resolve, reject) => {
-    let insert = `INSERT INTO Cliente SET ?`;
+    let insert = `INSERT INTO cliente SET ?`;
     let query = mysqlConnection.format(insert, data);
 
     mysqlConnection.query(query, (error, result) => {
@@ -26,7 +26,7 @@ function relationCustomerBenefits(data) {
 
 function getAll() {
   return new Promise((resolve, reject) => {
-    let sqlSentence = `SELECT * FROM bz19wlktes4tn01bh54y.Cliente`;
+    let sqlSentence = `SELECT * FROM cliente`;
     let query = mysqlConnection.format(sqlSentence);
 
     mysqlConnection.query(query, (error, result) => {
@@ -38,9 +38,9 @@ function getAll() {
 
 function getCopago(cedula) {
   return new Promise((resolve, reject) => {
-    let sqlSentence = `SELECT copago FROM Cliente inner join Plan 
-    on Cliente.plan_idPlan = Plan.idPlan
-    where Cliente.cedula = ${cedula}`;
+    let sqlSentence = `SELECT copago FROM cliente inner join plan 
+    on cliente.plan_idPlan = plan.idPlan
+    where cliente.cedula = ${cedula}`;
     let query = mysqlConnection.format(sqlSentence);
 
     mysqlConnection.query(query, (error, result) => {

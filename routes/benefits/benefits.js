@@ -3,7 +3,7 @@ const mysqlConnection = require("../../mysql/config");
 // all customers
 function getAllBenefits() {
   return new Promise((resolve, reject) => {
-    let sqlSentence = `SELECT * FROM Beneficio`;
+    let sqlSentence = `SELECT * FROM beneficio`;
     let query = mysqlConnection.format(sqlSentence);
 
     mysqlConnection.query(query, (error, result) => {
