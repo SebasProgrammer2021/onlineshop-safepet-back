@@ -9,6 +9,7 @@ var corsOptions = {
   }
 
 router.get("/getAll", cors(corsOptions), benefitController.getAll);
+
 router.delete("/deleteAll",  benefitController.deleteAll);
 
 // app.get('/download', function (req, res) {
