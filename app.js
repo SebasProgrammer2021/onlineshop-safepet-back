@@ -5,7 +5,6 @@ const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3050;
 const mysqlConnection = require("./mysql/config");
 const app = express();
-app.use(cors());
 app.use(bodyParser.json());
 
 //routes
