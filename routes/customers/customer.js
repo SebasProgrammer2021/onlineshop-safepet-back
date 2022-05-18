@@ -74,3 +74,4 @@ customer.delete("/delete/:id", (req, res) => {
 });
 
 module.exports = customer;
+z

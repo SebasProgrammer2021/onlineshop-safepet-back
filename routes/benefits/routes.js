@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 const benefitController = require("../../controllers/benefits");
 
-router.get("/getAll", cors(corsOptions), benefitController.getAll);
-
+router.get("/getAll", benefitController.getAll);
 router.delete("/deleteAll",  benefitController.deleteAll);
 
 // app.get('/download', function (req, res) {
