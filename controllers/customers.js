@@ -5,7 +5,7 @@ const customerControllers = module.exports;
 const consultas = require("../routes/bd");
 const planController = require("./plan");
 const planQuerys = require("../routes/plan/plan");
-const petQuerys = require("../mysql/queries/pet");
+const petQuerys = require("../routes/pets/pet");
 
 customerControllers.addCustomerWithBenefits = async (req, res) => {
   const {
@@ -18,17 +18,6 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
     beneficios,
     pets,
   } = req.body;
-
-  // console.log(
-  //   // cedula,
-  //   // nombre,
-  //   // apellido,
-  //   // direccion,
-  //   // telefono,
-  //   // valor,
-  //   // beneficios,
-  //   pets
-  // );
 
   try {
     const plan = {
@@ -67,7 +56,6 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
         cliente_idCliente: cedula,
         plan_idPlan: planId,
       };
-      // console.log(e, index, nombre);
       let respetreg = await petQuerys.addPet(pet);
     });
 
