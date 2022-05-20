@@ -5,7 +5,7 @@ const customerControllers = module.exports;
 const consultas = require("../routes/bd");
 const planController = require("./plan");
 const planQuerys = require("../routes/plan/plan");
-const petQuerys = require("../mysql/queries/pet");
+const petQuerys = require("../routes/pets/pet");
 
 customerControllers.addCustomerWithBenefits = async (req, res) => {
   const {

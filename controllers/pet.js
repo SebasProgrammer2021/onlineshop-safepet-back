@@ -1,7 +1,7 @@
 // const express = require("express");
 // const mysqlConnection = require("../../mysql/config");
 const petController = module.exports;
-const petQuerys = require("../mysql/queries/pet");
+const petQuerys = require("../routes/pets/pet");
 
 petController.addPet = async (req, res) => {
   const { nombre, edad, raza, idPlan, idCliente } = req.body;
