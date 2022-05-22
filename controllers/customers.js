@@ -18,8 +18,11 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
     beneficios,
     pets,
   } = req.body;
+  console.log("Termina de estructurar datos.");
 
-  try {
+  try 
+  {
+    console.log("Inicio tru -- se calcula copago del plan");
     const plan = {
       copago: planController.calculateCopago(valor),
       valor,
@@ -60,14 +63,13 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
     });
 
     return res.status(200).json({
-      status: "Successful registration",
-      reg: true,
+      status: "Successful registration"
     });
   } catch (error) {
     return res.status(400).json({
       status: "Erron on save",
       error,
-      reg: true,
+      reg: false,
     });
   }
 };
