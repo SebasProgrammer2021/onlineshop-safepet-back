@@ -10,8 +10,8 @@ test('Me retorna la tabla plan', async () => {
 test('Agrega objeto a la tabla plan', async () => {
   //objeto de prueba
   var myobject ={
-    id: 12,
-    nombre: 'Raul'
+    copago: 2000,
+    valor: 5000
   };
     return plan.addPlan(myobject).then(data => {
       expect(data).isObject;
