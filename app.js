@@ -10,14 +10,11 @@ app.use(bodyParser.json());
 
 //routes
 app.use("/benefit", require("./routes/benefits/routes"));
-app.use("/customer", require("./routes/routes"));
+app.use("/customer", require("./routes/customers/routes"));
 app.use("/plan", require("./routes/plan/routes"));
 app.use("/pet", require("./routes/pets/routes"));
 app.use(cors(
-    // { origin: "http://localhost:3050" },
-    // { origin: "http://localhost:3000/benefit/getAll" },
     { origin: "https://backsafepet.herokuapp.com" }
-    // { origin: "https://backsafepet.herokuapp.com/benefit/getAll" }
   )
 );
 

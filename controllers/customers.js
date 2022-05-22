@@ -5,7 +5,7 @@ const customerControllers = module.exports;
 const consultas = require("../routes/bd");
 const planController = require("./plan");
 const planQuerys = require("../routes/plan/plan");
-const petQuerys = require("../mysql/queries/pet");
+const petQuerys = require("../routes/pets/pet");
 
 customerControllers.addCustomerWithBenefits = async (req, res) => {
   const {
@@ -18,19 +18,11 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
     beneficios,
     pets,
   } = req.body;
+  console.log("Termina de estructurar datos.");
 
-  // console.log(
-  //   // cedula,
-  //   // nombre,
-  //   // apellido,
-  //   // direccion,
-  //   // telefono,
-  //   // valor,
-  //   // beneficios,
-  //   pets
-  // );
-
-  try {
+  try 
+  {
+    console.log("Inicio tru -- se calcula copago del plan");
     const plan = {
       copago: planController.calculateCopago(valor),
       valor,
@@ -67,19 +59,17 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
         cliente_idCliente: cedula,
         plan_idPlan: planId,
       };
-      // console.log(e, index, nombre);
       let respetreg = await petQuerys.addPet(pet);
     });
 
     return res.status(200).json({
-      status: "Successful registration",
-      reg: true,
+      status: "Successful registration"
     });
   } catch (error) {
     return res.status(400).json({
       status: "Erron on save",
       error,
-      reg: true,
+      reg: false,
     });
   }
 };

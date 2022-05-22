@@ -4,7 +4,7 @@ const mysqlConnection = require("../../mysql/config");
 function addPet(data) {
 
   return new Promise((resolve, reject) => {
-    const sqlSentence = "INSERT INTO Beneficiario SET ?";
+    const sqlSentence = "INSERT INTO beneficiario SET ?";
     let query = mysqlConnection.format(sqlSentence, data);
 
     mysqlConnection.query(query, (error, result) => {
@@ -16,7 +16,7 @@ function addPet(data) {
 
 function getAll() {
   return new Promise((resolve, reject) => {
-    const sqlSentence = "SELECT * FROM Beneficiario";
+    const sqlSentence = "SELECT * FROM beneficiario";
     let query = mysqlConnection.format(sqlSentence);
 
     mysqlConnection.query(query, (error, result) => {
