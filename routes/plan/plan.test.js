@@ -1,5 +1,5 @@
 const plan = require('./plan');
-
+//modifacar test unitarios
 test('Me retorna la tabla plan', async () => {
     return plan.getAll().then(data => {
       expect(data).isObject;

@@ -44,3 +44,7 @@ command: npm run test:cov
 command: npm test relative file path
 
 example: npm test routes/sum.test.js
+
+----------------------------------
+Base de Datos:  desplegada en Clever Cloud 
+
