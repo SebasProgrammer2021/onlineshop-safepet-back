@@ -34,6 +34,7 @@ petController.addPet = async (req, res) => {
 petController.getAll = async (req, res) => {
   try {
     let planList = await petQuerys.getAll();
+    console.log("Listado correctamente");
 
     return res.status(200).json({
       data: planList,

@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const petController = require("../../controllers/pet");
 
-router.post("/add", petController.addPet);
-router.get("/getAll", petController.getAll);
+router.post("/addPet", petController.addPet);
+router.get("/getAllPets", petController.getAll);
 
 // app.get('/download', function (req, res) {
 //   var file = '../static/contratoTrato_ex.doc';
