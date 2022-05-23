@@ -27,6 +27,7 @@ describe("Se prueban valores puntuales de la tabla plan", () => {
   });
 });
 
+//revisar los errores de valores duplicados
 /*describe("Validamos que si esta tomando los datos de la tabla", () => {
   test("Comprobamos que los objetos son iguales", async () => {
     return plan.getAll().then((data) => {
