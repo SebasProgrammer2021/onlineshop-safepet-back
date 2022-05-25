@@ -24,7 +24,7 @@ petController.addPet = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      status: "Erron on save",
+      status: "Erron on save Pet",
       error,
       reg: true,
     });
@@ -34,7 +34,7 @@ petController.addPet = async (req, res) => {
 petController.getAll = async (req, res) => {
   try {
     let planList = await petQuerys.getAll();
-    console.log("Listado correctamente");
+    console.log("Pets listing");
 
     return res.status(200).json({
       data: planList,
@@ -42,7 +42,7 @@ petController.getAll = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      status: "Erron on save",
+      status: "Erron listing Pet",
       error,
       reg: true,
     });
