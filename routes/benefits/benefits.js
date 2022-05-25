@@ -1,15 +1,46 @@
 const mysqlConnection = require("../../mysql/config");
 
-// all customers
-function getAllBenefits() {
+// add Benefit
+function addBenefit(data) {
   return new Promise((resolve, reject) => {
-    let sqlSentence = `SELECT * FROM beneficio`;
-    let query = mysqlConnection.format(sqlSentence);
+    const sqlSentence = "INSERT INTO beneficio SET ?";
+    let query = mysqlConnection.format(sqlSentence, data);
 
     mysqlConnection.query(query, (error, result) => {
       if (error) reject(error);
       resolve(result);
     });
+  });
+}
+
+// Get all Benefits
+function getAllBenefits() {
+  return new Promise((resolve, reject) => {
+    let sqlSentence = `SELECT * FROM beneficio`;
+    let query = mysqlConnection.format(sqlSentence);
+    mysqlConnection.query(query, (error, result) => {
+      if (error) reject(error);
+      resolve(result);
+    });
+  });
+}
+
+//Get Pet by Id
+function getBenefitByid(id) {
+  return new Promise((resolve, reject) => {
+    const sqlSentence = `select * from beneficio WHERE idBeneficio = ${id}`;
+    
+    let query = mysqlConnection.format(sqlSentence);
+    console.log(query.length,"benefit");
+   // if (query.length == 45) {
+      mysqlConnection.query(query, (error, result) => {
+        if (error) reject(error);
+        resolve(result);
+      });
+  //  }else{
+  //    console.log("No existe beneficio");
+ // }
+      
   });
 }
 
@@ -30,8 +61,41 @@ function deleteAllBenefits() {
   });
 }
 
+//Delete Benefits by Id
+function deleteBenefitByid(id) {
+  return new Promise((resolve, reject) => {
+    const sqlSentence = `DELETE from beneficio WHERE idBeneficio = ${id}`;
+    let query = mysqlConnection.format(sqlSentence);
+    mysqlConnection.query(query, (error, result) => {
+      if (error) reject(error);
+      resolve(result);
+    });
+  });
+}
+
+//Update Benefits by Id
+function updateBenefitByid(obj) {
+  return new Promise((resolve, reject) => {
+    const {id} = obj.params;
+    const {nombre, costo} = obj.body;
+    const sqlSentence = `UPDATE beneficio SET nombre = '${nombre}', costo = '${costo}'
+    WHERE idBeneficio = ${id} `;
+    let query = mysqlConnection.format(sqlSentence);
+    mysqlConnection.query(query, (error, result) => {
+      if (error) reject(error);
+      resolve(result);
+    });
+  });
+}
+
+
+
 module.exports = {
   deleteAllBenefits,
   getAllBenefits,
+  addBenefit,
+  getBenefitByid,
+  updateBenefitByid,
+  deleteBenefitByid,
 };
 

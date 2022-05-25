@@ -51,7 +51,6 @@ petController.getAll = async (req, res) => {
 
 petController.getPetByid = async (req, res) => {
   let {id} = req.params;
-  console.log(id,"controlador");
   try {
     let petList = await petQuerys.getPetByid(id);
     console.log(petList);
