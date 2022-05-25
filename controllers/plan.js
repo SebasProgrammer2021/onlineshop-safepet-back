@@ -60,3 +60,58 @@ planController.calculateCopago = (planValue) => {
     return (copago = 15000);
   }
 };
+
+planController.getPlanByid = async (req, res) => {
+  let {id} = req.params;
+  try {
+    let petList = await planQuerys.getPlanByid(id);
+    console.log(petList);
+    return res.status(200).json({
+      data: petList,
+      status: 200,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      status: "Erron on save",
+      error,
+      reg: true,
+    });
+  }
+};
+
+planController.deletePlanByid = async (req, res) => {
+  let {id} = req.params;
+  try {
+    let petList = await planQuerys.deletePlanByid(id);
+    console.log(petList);
+    return res.status(200).json({
+      //data: petList,
+      status: 200,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      status: "Erron on save",
+      error,
+      reg: true,
+    });
+  }
+};
+
+planController.updatePlanByid = async (req, res) => {
+  try {
+    let petList = await planQuerys.updatePlanByid(req);
+    console.log(petList);
+    return res.status(200).json({
+      //data: petList,
+      
+      status: 200,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      status: "Erron on save",
+      error,
+      reg: true,
+    });
+  }
+};
+
