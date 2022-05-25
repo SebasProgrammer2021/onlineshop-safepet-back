@@ -93,7 +93,7 @@ customerControllers.getAll = async (req, res) => {
 
 customerControllers.getCopago = async (req, res) => {
   let { cedula } = req.body;
-
+  console.log(req.body);
   try {
     let customersList = await consultas.getCopago(cedula);
 
