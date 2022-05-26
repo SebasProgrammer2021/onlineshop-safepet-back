@@ -20,19 +20,19 @@ app.use(cors(
 );
 
 // set up rate limiter: maximum of five requests per minute
-const limiter = rateLimit({
-  windowMs: 15*60*1000, // 15 minutes
-  max: 15
-});
+// const limiter = rateLimit({
+//   windowMs: 15*60*1000, // 15 minutes
+//   max: 20
+// });
 
 // apply rate limiter to all requests
-app.use(limiter);
+// app.use(limiter);
 
-app.get('/:path', function(req, res) {
-  let path = req.params.path;
-  if (isValidPath(path))
-    res.sendFile(path);
-});
+// app.get('/:path', function(req, res) {
+//   let path = req.params.path;
+//   if (isValidPath(path))
+//     res.sendFile(path);
+// });
 
 
 
