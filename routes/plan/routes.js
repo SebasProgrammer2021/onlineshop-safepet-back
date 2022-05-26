@@ -8,8 +8,4 @@ router.get("/getPlanByid/:id", planController.getPlanByid);
 router.delete("/deletePlanByid/:id", planController.deletePlanByid);
 router.put("/updatePlanByid/:id", planController.updatePlanByid);
 
-// app.get('/download', function (req, res) {
-//   var file = '../static/contratoTrato_ex.doc';
-//   res.download(file); // Set disposition and send it. });
-
 module.exports = router;

@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-// const mysqlConnection = require("../mysql/config");
 const customerController = require("../../controllers/customers");
 const benefitController = require("../../controllers/benefits");
 

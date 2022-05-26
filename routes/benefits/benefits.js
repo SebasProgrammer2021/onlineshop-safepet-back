@@ -1,6 +1,5 @@
 const mysqlConnection = require("../../mysql/config");
 
-// add Benefit
 function addBenefit(data) {
   return new Promise((resolve, reject) => {
     const sqlSentence = "INSERT INTO beneficio SET ?";
@@ -13,7 +12,6 @@ function addBenefit(data) {
   });
 }
 
-// Get all Benefits
 function getAllBenefits() {
   return new Promise((resolve, reject) => {
     let sqlSentence = `SELECT * FROM beneficio`;
@@ -25,13 +23,11 @@ function getAllBenefits() {
   });
 }
 
-//Get Pet by Id
 function getBenefitByid(id) {
   return new Promise((resolve, reject) => {
     const sqlSentence = `select * from beneficio WHERE idBeneficio = ${id}`;
     
     let query = mysqlConnection.format(sqlSentence);
-    //console.log(query.length,"benefit");
       mysqlConnection.query(query, (error, result) => {
         if (error) reject(error);
         resolve(result);
@@ -39,7 +35,7 @@ function getBenefitByid(id) {
       
   });
 }
-//Delete All Benefit 
+
 function deleteAllBenefits() {
   return new Promise((resolve, reject) => {
     let sqlSentence1 = `DELETE FROM cliente_beneficio`;
@@ -57,7 +53,6 @@ function deleteAllBenefits() {
   });
 }
 
-//Delete Benefits by Id
 function deleteBenefitByid(id) {
   return new Promise((resolve, reject) => {
     const sqlSentence = `DELETE from beneficio WHERE idBeneficio = ${id}`;
@@ -69,7 +64,6 @@ function deleteBenefitByid(id) {
   });
 }
 
-//Update Benefits by Id
 function updateBenefitByid(obj) {
   return new Promise((resolve, reject) => {
     const {id} = obj.params;

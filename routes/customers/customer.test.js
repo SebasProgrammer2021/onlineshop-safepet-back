@@ -37,13 +37,3 @@ describe("Se consulta copago del cliente", () => {
     });
   });
 });
-
-// describe("Se elimina un cliente por cedula", () => {
-//   test("Retorna el registro del cliente con cedula 4", async () => {
-//     return customer.deleteCustomerById(10000001).then((data) => {
-//       let response = customer.getCustomerbyId(10000001);
-//       console.log(response);
-//       expect(response).toBe(100000);
-//     });
-//   });
-// });
