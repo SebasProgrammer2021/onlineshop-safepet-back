@@ -20,7 +20,6 @@ app.use(cors(
 );
 
 // set up rate limiter: maximum of five requests per minute
-
 const limiter = rateLimit({
   windowMs: 1*60*1000, // 1 minute
   max: 15

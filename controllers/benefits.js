@@ -66,12 +66,15 @@ benefitController.deleteAll = async (req, res) => {
 benefitController.getBenefitByid = async (req, res) => {
   let {id} = req.params;
   try {
-    let petList = await benefitQuerys.getBenefitByid(id);
-    console.log(petList, "controlador");
-    return res.status(200).json({
-      data: petList,
-      status: 200,
-    });
+    let benefitList = await benefitQuerys.getBenefitByid(id);
+    console.log(benefitList, "controlador");
+    if (benefitList != null) {
+      return res.status(200).json({
+        data: benefitList,
+        status: 200,
+      });
+    }
+    
   } catch (error) {
     return res.status(400).json({
       status: "Erron on save",

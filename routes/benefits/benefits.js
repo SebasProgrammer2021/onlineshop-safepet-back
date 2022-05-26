@@ -31,19 +31,15 @@ function getBenefitByid(id) {
     const sqlSentence = `select * from beneficio WHERE idBeneficio = ${id}`;
     
     let query = mysqlConnection.format(sqlSentence);
-    console.log(query.length,"benefit");
-   // if (query.length == 45) {
+    //console.log(query.length,"benefit");
       mysqlConnection.query(query, (error, result) => {
         if (error) reject(error);
         resolve(result);
       });
-  //  }else{
-  //    console.log("No existe beneficio");
- // }
       
   });
 }
-
+//Delete All Benefit 
 function deleteAllBenefits() {
   return new Promise((resolve, reject) => {
     let sqlSentence1 = `DELETE FROM cliente_beneficio`;
@@ -87,8 +83,6 @@ function updateBenefitByid(obj) {
     });
   });
 }
-
-
 
 module.exports = {
   deleteAllBenefits,
