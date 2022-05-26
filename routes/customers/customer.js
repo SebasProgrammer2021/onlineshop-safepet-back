@@ -1,76 +1,100 @@
 const express = require("express");
-const customer = express.Router();
 const mysqlConnection = require("../../mysql/config");
 
-// all customers
-customer.get("/getAll", (req, res) => {
-  const sql = "SELECT * FROM cliente";
-  mysqlConnection.query(sql, (error, results) => {
-    if (error) throw error;
-    if (results.length > 0) {
-      res.json(results);
-    } else {
-      res.send("no results");
-    }
+function getAllCustomers() {
+  return new Promise((resolve, reject) => {
+    const sqlSentence = "SELECT * FROM cliente";
+    let query = mysqlConnection.format(sqlSentence);
+
+    mysqlConnection.query(query, (error, result) => {
+      if (error) reject(error);
+      resolve(result);
+    });
   });
-});
+}
 
-customer.get("/customers/:id", (req, res) => {
-  const { id } = req.params;
-  const sql = `SELECT * FROM cliente WHERE idCliente = ${id}`;
-  mysqlConnection.query(sql, (error, result) => {
-    if (error) throw error;
-    if (result.length > 0) {
-      res.json(result);
-    } else {
-      res.send("no results");
-    }
+function getCustomerbyId(cedula) {
+  return new Promise((resolve, reject) => {
+    let sqlSentence = `SELECT * FROM cliente WHERE cliente.cedula = ${cedula}`;
+    let query = mysqlConnection.format(sqlSentence);
+
+    mysqlConnection.query(query, (error, result) => {
+      if (error) reject(error);
+      resolve(result);
+    });
   });
-});
+}
 
-customer.post("/add", (req, res) => {
-  const sql = "INSERT INTO cliente SET ?";
-  const sqlClienteBeneficio = "INSERT INTO cliente_beneficio SET ?";
-  const consult = "SELECT * FROM beneficio";
+function getCopago(cedula) {
+  return new Promise((resolve, reject) => {
+    let sqlSentence = `SELECT copago FROM cliente inner join plan 
+    on cliente.plan_idPlan = plan.idPlan
+    where cliente.cedula = ${cedula}`;
+    let query = mysqlConnection.format(sqlSentence);
 
-  const customer = {
-    cedula: req.body.cedula,
-    nombre: req.body.nombre,
-    apellido: req.body.apellido,
-    direccion: req.body.direccion,
-    telefono: req.body.telefono,
-  };
-
-  mysqlConnection.query(sql, customer, (error) => {
-    if (error) throw error;
-
-    res.send({ status: 200, message: "CLIENTE_CREADO" });
+    mysqlConnection.query(query, (error, result) => {
+      if (error) reject(error);
+      resolve(result);
+    });
   });
-});
+}
 
-customer.put("/update/:id", (req, res) => {
-  const { id } = req.params;
-  const { name, city } = req.body;
+function addCustomer(data) {
+  return new Promise((resolve, reject) => {
+    const sqlSentence = "INSERT INTO cliente SET ?";
+    let query = mysqlConnection.format(sqlSentence, data);
 
-  const sql = `UPDATE cliente SET name = '${name}', city = '${city}' WHERE idCliente = ${id}`;
-
-  mysqlConnection.query(sql, (error) => {
-    if (error) throw error;
-
-    res.send({ status: 200, message: "CLIENTE_ACTUALIZADO" });
+    mysqlConnection.query(query, (error, result) => {
+      if (error) reject(error);
+      resolve(result);
+    });
   });
-});
+}
 
-customer.delete("/delete/:id", (req, res) => {
-  const { id } = req.params;
+function relationCustomerBenefits(data) {
+  return new Promise((resolve, reject) => {
+    let sqlSentence = `INSERT INTO plan_beneficio SET ?`;
+    let query = mysqlConnection.format(sqlSentence, data);
 
-  const sql = `DELETE FROM cliente WHERE idCliente = ${id}`;
-
-  mysqlConnection.query(sql, (error) => {
-    if (error) throw error;
-
-    res.send({ status: 200, message: "CLIENTE_BORRADO" });
+    mysqlConnection.query(query, (error, result) => {
+      if (error) reject(error);
+      resolve(result);
+    });
   });
-});
+}
 
-module.exports = customer;
+function deleteCustomerById(cedula) {
+  return new Promise((resolve, reject) => {
+    let sqlSentence = `DELETE FROM cliente WHERE cedula = ${cedula}`;
+    let query = mysqlConnection.format(sqlSentence);
+
+    mysqlConnection.query(query, (error, result) => {
+      if(error) reject(error);
+      resolve(result);
+    });
+  });
+}
+
+function updateCustomer(customer){
+  return new Promise((resolve, reject) => {
+    let {cedula} = customer.params;
+    let {nombre, apellido, direccion, telefono} = customer.body;
+    let sqlSentence = `UPDATE cliente SET nombre = '${nombre}', apellido = '${apellido}', direccion = '${direccion}', telefono = '${telefono}'  WHERE cedula = ${cedula}`;
+    let query = mysqlConnection.format(sqlSentence);
+
+    mysqlConnection.query(query, (error, result) => {
+      if(error) reject(error);
+      resolve(result);
+    })
+  })
+}
+
+module.exports = {
+  getAllCustomers,
+  addCustomer,
+  relationCustomerBenefits,
+  getCustomerbyId,
+  getCopago,
+  deleteCustomerById,
+  updateCustomer,
+};

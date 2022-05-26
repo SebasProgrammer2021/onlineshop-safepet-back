@@ -6,6 +6,8 @@ const consultas = require("../routes/bd");
 const planController = require("./plan");
 const planQuerys = require("../routes/plan/plan");
 const petQuerys = require("../routes/pets/pet");
+const customerQuerys = require("../routes/customers/customer");
+
 
 customerControllers.addCustomerWithBenefits = async (req, res) => {
   const {
@@ -22,7 +24,7 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
 
   try 
   {
-    console.log("Inicio tru -- se calcula copago del plan");
+    console.log("Inicio try -- se calcula copago del plan");
     const plan = {
       copago: planController.calculateCopago(valor),
       valor,
@@ -40,14 +42,17 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
       plan_idPlan: planId,
     };
 
-    let resCustomerRegistration = await consultas.registerCustomer(customer);
+    let resCustomerRegistration = await customerQuerys.addCustomer(customer);
+
+    console.log("Se agrega customer---> ", resCustomerRegistration);
 
     for (const benefitId in beneficios) {
       let relation = {
         plan_idPlan: planId,
         beneficio_idBeneficio: beneficios[benefitId],
       };
-      let b = await consultas.relationCustomerBenefits(relation);
+      let benefitCustomer = await customerQuerys.relationCustomerBenefits(relation);
+      console.log("Se agregabeneficio en customer", benefitCustomer);
     }
 
     pets.map(async (e, index) => {
@@ -60,23 +65,25 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
         plan_idPlan: planId,
       };
       let respetreg = await petQuerys.addPet(pet);
+      console.log("Registro de mascota en customer ", respetreg);
     });
 
     return res.status(200).json({
-      status: "Successful registration"
+      status: "Successful registration customer"
     });
   } catch (error) {
     return res.status(400).json({
-      status: "Erron on save",
+      status: "Erron on save customer",
       error,
-      reg: false,
+      reg: true,
     });
   }
 };
 
-customerControllers.getAll = async (req, res) => {
+customerControllers.getAllCustomer = async (req, res) => {
   try {
-    let customersList = await consultas.getAll();
+    let customersList = await customerQuerys.getAllCustomers();
+    console.log("customers listing");
 
     return res.status(200).json({
       data: customersList,
@@ -84,7 +91,7 @@ customerControllers.getAll = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      status: "Erron on save",
+      status: "Erron listing customer",
       error,
       reg: true,
     });
@@ -92,10 +99,10 @@ customerControllers.getAll = async (req, res) => {
 };
 
 customerControllers.getCopago = async (req, res) => {
-  let { cedula } = req.body;
-  console.log(req.body);
+  let cedula = req.params.cedula;
+
   try {
-    let customersList = await consultas.getCopago(cedula);
+    let customersList = await customerQuerys.getCopago(cedula);
 
     return res.status(200).json({
       data: customersList,
@@ -109,3 +116,61 @@ customerControllers.getCopago = async (req, res) => {
     });
   }
 };
+
+customerControllers.getCustomerbyId = async (req, res) => {
+
+  let customerId = req.params.cedula;
+  console.log(customerId);
+
+  try {
+    let customersList = await customerQuerys.getCustomerbyId(customerId);
+
+    return res.status(200).json({
+      data: customersList,
+      status: 200,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      status: "Error on consult customer",
+      error,
+      reg: true,
+    });
+  }
+};
+
+customerControllers.deleteCustomerById = async (req, res) => {
+  let customerId = req.params.cedula;
+  try {
+    let customerToDelete = await customerQuerys.deleteCustomerById(customerId);
+
+    return res.status(200).json({
+      data: "Cliente eliminado", customerId,
+      status: 200,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      status: "Error on delete customer",
+      error,
+      reg: true,
+    });
+  }
+}
+
+customerControllers.updateCustomer = async (req, res) => {
+  try {
+    let customerUpdated = await customerQuerys.updateCustomer(req);
+ 
+    return res.status(200).json({
+      info: "Se actualizo",
+      cedula_cliente: req.params.cedula,
+      status: 200,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      status: "error al actualizar cliente",
+      error,
+      reg: true,
+    });
+    
+  }
+}
