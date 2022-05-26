@@ -30,6 +30,7 @@ describe("Se prueban valores puntuales de la tabla benefits", () => {
 describe("Validamos que si esta tomando los datos de la tabla", () => {
   test("Comprobamos que los objetos son iguales", async () => {
     return benefits.getAllBenefits().then((data) => {
+
       let register = [
         { idBeneficio: 1, nombre: "Consultas generales", costo: 150000 },
         { idBeneficio: 2, nombre: "Spa uñas", costo: 50000 },
