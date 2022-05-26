@@ -1,5 +1,3 @@
-// const express = require("express");
-// const mysqlConnection = require("../../mysql/config");
 const planController = module.exports;
 const planQuerys = require("../routes/plan/plan");
 
@@ -103,7 +101,6 @@ planController.deletePlanByid = async (req, res) => {
     let petList = await planQuerys.deletePlanByid(id);
     console.log(petList);
     return res.status(200).json({
-      //data: petList,
       status: 200,
     });
   } catch (error) {
@@ -116,14 +113,10 @@ planController.deletePlanByid = async (req, res) => {
 };
 
 planController.updatePlanByid = async (req, res) => {
-  //let cedula = req.params.cedula;
- //console.log(req.body,"controller");
   try {
     let planList = await planQuerys.updatePlanByid(req);
     console.log(planList);
-    return res.status(200).json({
-      //data: petList,
-      
+    return res.status(200).json({      
       status: 200,
     });
   } catch (error) {

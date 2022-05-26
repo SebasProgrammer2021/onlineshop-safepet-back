@@ -1,6 +1,4 @@
 const express = require("express");
-// const benefit = express.Router();
-// const mysqlConnection = require("../../mysql/config");
 const customerControllers = module.exports;
 const consultas = require("../routes/bd");
 const planController = require("./plan");
@@ -20,11 +18,9 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
     beneficios,
     pets,
   } = req.body;
-  console.log("Termina de estructurar datos.");
 
   try 
   {
-    console.log("Inicio try -- se calcula copago del plan");
     const plan = {
       copago: planController.calculateCopago(valor),
       valor,
@@ -44,15 +40,12 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
 
     let resCustomerRegistration = await customerQuerys.addCustomer(customer);
 
-    console.log("Se agrega customer---> ", resCustomerRegistration);
-
     for (const benefitId in beneficios) {
       let relation = {
         plan_idPlan: planId,
         beneficio_idBeneficio: beneficios[benefitId],
       };
       let benefitCustomer = await customerQuerys.relationCustomerBenefits(relation);
-      console.log("Se agregabeneficio en customer", benefitCustomer);
     }
 
     pets.map(async (e, index) => {
@@ -65,7 +58,6 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
         plan_idPlan: planId,
       };
       let respetreg = await petQuerys.addPet(pet);
-      console.log("Registro de mascota en customer ", respetreg);
     });
 
     return res.status(200).json({
@@ -83,7 +75,6 @@ customerControllers.addCustomerWithBenefits = async (req, res) => {
 customerControllers.getAllCustomer = async (req, res) => {
   try {
     let customersList = await customerQuerys.getAllCustomers();
-    console.log("customers listing");
 
     return res.status(200).json({
       data: customersList,
@@ -120,7 +111,6 @@ customerControllers.getCopago = async (req, res) => {
 customerControllers.getCustomerbyId = async (req, res) => {
 
   let customerId = req.params.cedula;
-  console.log(customerId);
 
   try {
     let customersList = await customerQuerys.getCustomerbyId(customerId);
@@ -159,7 +149,6 @@ customerControllers.deleteCustomerById = async (req, res) => {
 customerControllers.updateCustomer = async (req, res) => {
   try {
     let customerUpdated = await customerQuerys.updateCustomer(req);
- 
     return res.status(200).json({
       info: "Se actualizo",
       cedula_cliente: req.params.cedula,
