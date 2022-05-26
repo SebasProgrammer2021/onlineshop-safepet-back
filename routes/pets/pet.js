@@ -2,7 +2,6 @@ const express = require("express");
 const mysqlConnection = require("../../mysql/config");
 
 function addPet(data) {
-
   return new Promise((resolve, reject) => {
     const sqlSentence = "INSERT INTO beneficiario SET ?";
     let query = mysqlConnection.format(sqlSentence, data);

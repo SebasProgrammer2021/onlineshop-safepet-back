@@ -22,7 +22,7 @@ app.use(cors(
 // set up rate limiter: maximum of five requests per minute
 
 const limiter = rateLimit({
-  windowMs: 1*60*1000, // 1 minute
+  windowMs: 15*60*1000, // 15 minutes
   max: 15
 });
 
@@ -47,3 +47,4 @@ mysqlConnection.connect((error) => {
 const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
