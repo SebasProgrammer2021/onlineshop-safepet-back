@@ -79,6 +79,24 @@ planController.getPlanByid = async (req, res) => {
   }
 };
 
+planController.getAllByid = async (req, res) => {
+  let {id} = req.params;
+  try {
+    let list = await planQuerys.getAllByid(id);
+    console.log(list);
+    return res.status(200).json({
+      data: petList,
+      status: 200,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      status: "Erron on save",
+      error,
+      reg: true,
+    });
+  }
+};
+
 planController.deletePlanByid = async (req, res) => {
   let {id} = req.params;
   try {
@@ -98,9 +116,11 @@ planController.deletePlanByid = async (req, res) => {
 };
 
 planController.updatePlanByid = async (req, res) => {
+  //let cedula = req.params.cedula;
+ //console.log(req.body,"controller");
   try {
-    let petList = await planQuerys.updatePlanByid(req);
-    console.log(petList);
+    let planList = await planQuerys.updatePlanByid(req);
+    console.log(planList);
     return res.status(200).json({
       //data: petList,
       
