@@ -4,7 +4,7 @@
   "description": "SAFEPET APP,",
   "main": "app.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "test:cov": "jest --coverage --watchAll",
     "start": "node ."
   },
