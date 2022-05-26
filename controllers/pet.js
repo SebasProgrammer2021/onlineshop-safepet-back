@@ -48,3 +48,76 @@ petController.getAll = async (req, res) => {
     });
   }
 };
+
+petController.getPetByid = async (req, res) => {
+  let {id} = req.params;
+  try {
+    let petList = await petQuerys.getPetByid(id);
+    console.log(petList);
+    return res.status(200).json({
+      data: petList,
+      status: 200,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      status: "Erron on save",
+      error,
+      reg: true,
+    });
+  }
+};
+
+petController.getCustomerByPet = async (req, res) => {
+  let {id} = req.params;
+  console.log(id,"controlador");
+  try {
+    let petList = await petQuerys.getCustomerByPet(id);
+    console.log(petList);
+    return res.status(200).json({
+      data: petList,
+      status: 200,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      status: "Erron on save",
+      error,
+      reg: true,
+    });
+  }
+};
+
+petController.deletePetByid = async (req, res) => {
+  let {id} = req.params;
+  try {
+    let petList = await petQuerys.deletePetByid(id);
+    console.log(petList);
+    return res.status(200).json({
+      //data: petList,
+      status: 200,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      status: "Erron on save",
+      error,
+      reg: true,
+    });
+  }
+};
+
+petController.updatePetByid = async (req, res) => {
+  try {
+    let petList = await petQuerys.updatePetByid(req);
+    console.log(petList);
+    return res.status(200).json({
+      //data: petList,
+      
+      status: 200,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      status: "Erron on save",
+      error,
+      reg: true,
+    });
+  }
+};
