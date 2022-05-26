@@ -35,11 +35,7 @@ describe("Validamos que si esta tomando los datos de la tabla", () => {
         { idBeneficio: 2, nombre: "Spa uñas", costo: 50000 },
         { idBeneficio: 3, nombre: "Spa corte pelo", costo: 15000 },
         { idBeneficio: 4, nombre: "Fiesta de cumpleaños", costo: 45000 },
-        {
-          idBeneficio: 5,
-          nombre: "Transporte en caso de emergencia",
-          costo: 80000,
-        },
+        { idBeneficio: 5, nombre: "Transporte en caso de emergencia", costo: 80000 },
         { idBeneficio: 6, nombre: "Seguro todo riesgo", costo: 300000 },
         { idBeneficio: 7, nombre: "Servicio funebre", costo: 73000 },
         { idBeneficio: 8, nombre: "Medicamentos", costo: 30000 },

@@ -34,7 +34,7 @@ describe("Validamos que si esta tomando los datos de la tabla", () => {
       let register = [
         { idPlan: 1, copago: 100000, valor: 215000 },
         { idPlan: 2, copago: 100000, valor: 275000 },
-        { idPlan: 3, copago: 95000, valor: 365000 },
+        { idPlan: 3, copago: 50000, valor: 400000 },
         { idPlan: 4, copago: 90000, valor: 900000 },
         { idPlan: 5, copago: 60000, valor: 400000 },
         { idPlan: 6, copago: 60000, valor: 455000 },
